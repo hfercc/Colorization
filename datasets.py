@@ -78,7 +78,8 @@ class Image_from_folder(data.Dataset):
             img = resize(img, self.render_size)
         try:
             img = rgb2lab(img)   
-        except ValueError:
+        except ValueError as e:
+            print(e)
             print(self.gt_images[index])
 
         img = np.array(img).transpose(2,0,1)
