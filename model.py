@@ -30,7 +30,7 @@ class VGG(nn.Module):
         x = self.classifier(x)
         return x
 
-    def load_state_dict(self, state_dict, strict=True):
+    def load_state_dict(self, state_dict, strict= False):
 
         own_state = self.state_dict()
 

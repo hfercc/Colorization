@@ -60,7 +60,7 @@ class Solver(object):
         checkpoint = torch.load(model_path)
         start_iters = checkpoint['iters']
         # G_best_err = G_checkpoint['best_err']
-        self.model.load_state_dict(checkpoint['state_dict'], strict = False)
+        self.model.load_state_dict(checkpoint['state_dict'])
         self.lr = checkpoint['lr']
 
         return start_iters + 1
