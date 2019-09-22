@@ -106,7 +106,7 @@ class Solver(object):
                 gt = Variable(gt) 
 
             ###################### Train discrimlator ######################################
-            print(gt.shape)
+            #print(gt.shape)
             wei_output, enc_gt = self.model(gt)
 
 
