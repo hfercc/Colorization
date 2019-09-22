@@ -40,7 +40,7 @@ config = {
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/home/tianlong/data/mountpoint/imagenet/val/*.jpg',
+        'file' : '/home/tianlong/data/mountpoint/imagenet/val/*.JPEG',
         'replicates': 1,
         'train':False
     },
