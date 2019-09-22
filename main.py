@@ -9,7 +9,7 @@ from config import config
 from tensorboardX import SummaryWriter
 from solver import Solver
 
-import torch.utils.data.dataloader.default_collate as default_collate
+from torch.utils.data.dataloader import default_collate
 # np.set_printoptions(threshold=np.nan)
 
 def main(args):
