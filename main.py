@@ -17,6 +17,7 @@ def main(args):
     gpuargs = config['gpuargs'] if config['cuda'] else {}
     def my_collate(batch):
         batch = list(filter(lambda x:x is not None, batch))
+        batch.extend([batch[-1] for _ in range(config['batch_size'] - len(batch))])
         return default_collate(batch)
 
     train_dataset = Image_from_folder(config['image_folder_train'])
