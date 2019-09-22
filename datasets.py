@@ -76,8 +76,10 @@ class Image_from_folder(data.Dataset):
             img = resize(img ,(224, 224)) 
         else:
             img = resize(img, self.render_size)
-
-        img = rgb2lab(img)   
+        try:
+            img = rgb2lab(img)   
+        except ValueError:
+            print(self.gt_images[index])
 
         img = np.array(img).transpose(2,0,1)
         img = torch.from_numpy(img.astype(np.float32))
