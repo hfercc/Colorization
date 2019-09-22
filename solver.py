@@ -21,7 +21,7 @@ class Solver(object):
     def __init__(self, config):
         """Initialize configurations."""
 
-        self.model = ColorizationNet(config['bachnorm'], config['pretrained'])
+        self.model = ColorizationNet(config['bachnorm'], config['pretrained'], strict = False)
         self.criterion = CE_loss()
         self.lr = config['lr']
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr, weight_decay=1e-3, betas=(0.8, 0.9))
@@ -60,7 +60,7 @@ class Solver(object):
         checkpoint = torch.load(model_path)
         start_iters = checkpoint['iters']
         # G_best_err = G_checkpoint['best_err']
-        self.model.load_state_dict(checkpoint['state_dict'], strict = False)
+        self.model.load_state_dict(checkpoint['state_dict'])
         self.lr = checkpoint['lr']
 
         return start_iters + 1
