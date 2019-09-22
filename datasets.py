@@ -59,7 +59,7 @@ class Image_from_folder(data.Dataset):
 
         self.frame_size = frame_utils.read_gen(self.gt_images[0]).shape
 
-        if  (self.frame_size[0]%64) or (self.frame_size[1]%64):
+        if  (self.frame_size[0] % 64) or (self.frame_size[1] % 64):
 
             self.render_size.append( ((self.frame_size[0])//64)  *64)
             self.render_size.append( ( (self.frame_size[1])//64)  * 64)

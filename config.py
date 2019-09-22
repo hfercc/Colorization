@@ -34,13 +34,13 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/media/chuchienshu/ACD26B99D26B6714/dataset/ILSVRC2012_img_train/*/*.JPEG',
+        'file' : '/home/tianlong/data/mountpoint/imagenet/train/*/*.JPEG',
         'replicates': 1,
         'train':True
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/home/chuchienshu/Downloads/dataset/DAVIS_test/*/*.jpg',
+        'file' : '/home/tianlong/data/mountpoint/imagenet/val/*.jpg',
         'replicates': 1,
         'train':False
     },
