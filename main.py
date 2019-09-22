@@ -8,17 +8,22 @@ from datasets import  Image_from_folder
 from config import config
 from tensorboardX import SummaryWriter
 from solver import Solver
+
+import torch.utils.data.dataloader.default_collate as default_collate
 # np.set_printoptions(threshold=np.nan)
 
 def main(args):
 
     gpuargs = config['gpuargs'] if config['cuda'] else {}
+    def my_collate(batch):
+        batch = list(filter(lambda x:x is not None, batch))
+        return default_collate(batch)
 
     train_dataset = Image_from_folder(config['image_folder_train'])
-    train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True ,**gpuargs, drop_last= True)
+    train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True ,**gpuargs, drop_last= True, collate_fn=my_collate)
 
     val_dataset = Image_from_folder(config['image_folder_val'])
-    val_loader = DataLoader(val_dataset, batch_size=config['val_batch_size'], shuffle=False ,**gpuargs, drop_last= True)
+    val_loader = DataLoader(val_dataset, batch_size=config['val_batch_size'], shuffle=False ,**gpuargs, drop_last= True, collate_fn=my_collate)
         
     train_logger = SummaryWriter(log_dir = os.path.join(config['save'], 'train'), comment = 'training')
     val_logger = SummaryWriter(log_dir = os.path.join(config['save'], 'val'), comment = 'validation')

@@ -79,8 +79,7 @@ class Image_from_folder(data.Dataset):
         try:
             img = rgb2lab(img)   
         except ValueError as e:
-            print(e)
-            print(self.gt_images[index])
+            return None
 
         img = np.array(img).transpose(2,0,1)
         img = torch.from_numpy(img.astype(np.float32))
