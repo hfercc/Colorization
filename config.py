@@ -35,13 +35,13 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/home/tianlong/data/mountpoint/imagenet/train/*/*.JPEG',
+        'file' : '/ssd2/bansa01/ImageNet/train/*/*.JPEG',
         'replicates': 1,
         'train':True
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/home/tianlong/data/mountpoint/imagenet/val/*.JPEG',
+        'file' : '/ssd2/bansa01/ImageNet/val/*.JPEG',
         'replicates': 1,
         'train':False
     },
