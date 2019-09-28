@@ -8,6 +8,8 @@ class CE_loss(nn.Module):
         self.loss = nn.CrossEntropyLoss()
     
     def forward(self, predict, target):
+        print(predict.shape)
+        print(target.shape)
         n, c, h, w = target.data.shape
 
         predict = predict.permute(0,2,3,1).contiguous().view(n*h*w, -1)
