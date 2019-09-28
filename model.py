@@ -144,6 +144,7 @@ class ColorizationNet(nn.Module):
         gt_img_l = (gt_img[:,:1,:,:] - 50.) * 0.02
         x = self.bw_conv(gt_img_l)
         x = self.relu (self.main(x))
+        print(x.shape)
         x = self.conv_8(x)
         gen = self.conv313(x)
 
@@ -205,6 +206,7 @@ class ColorizationResNet(nn.Module):
         x = self.main.layer2(x)
         x = self.main.layer3(x)
         x = self.main.layer4(x)
+        print(x.shape)
         x = self.main.fc(x)
         print(x.shape)
 
