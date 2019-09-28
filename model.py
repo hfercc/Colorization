@@ -196,8 +196,18 @@ class ColorizationResNet(nn.Module):
         
     def forward(self, gt_img):
         gt_img_l = (gt_img[:,:1,:,:] - 50.) * 0.02
-        x = self.relu (self.main(gt_img_l))
+
+        x = self.main.conv1(gt_img_l)
+        x = self.main.bn1(x)
+        x = self.main.relu(x)
+        x = self.main.maxpool(x)
+        x = self.main.layer1(x)
+        x = self.main.layer2(x)
+        x = self.main.layer3(x)
+        x = self.main.layer4(x)
+        x = self.main.fc(x)
         print(x.shape)
+        
         x = self.conv_8(x)
         gen = self.conv313(x)
 
