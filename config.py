@@ -41,7 +41,7 @@ config = {
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/ssd2/bansa01/ImageNet/val/*.JPEG',
+        'file' : '/ssd2/bansa01/ImageNet/val/*/*.JPEG',
         'replicates': 1,
         'train':False
     },
