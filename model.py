@@ -206,9 +206,7 @@ class ColorizationResNet(nn.Module):
         x = self.main.layer2(x)
         x = self.main.layer3(x)
         x = self.main.layer4(x)
-        print(x.shape)
         x = self.main.fc(x)
-        print(x.shape)
 
         x = self.conv_8(x)
         gen = self.conv313(x)
