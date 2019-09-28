@@ -188,7 +188,7 @@ class ColorizationResNet(nn.Module):
             self.main = resnet50()
         self.main.conv1 = nn.Conv2d(1, 64, 3, padding=1)
 
-        self.main.fc = nn.ConvTranspose2d(512,256,4,2, padding=1)
+        self.main.fc = nn.ConvTranspose2d(2048,256,4,2, padding=1)
         self.relu = nn.ReLU()
 
         self.conv_8 = conv(256,256,2,[1,1], batchNorm=False)
@@ -207,7 +207,7 @@ class ColorizationResNet(nn.Module):
         x = self.main.layer4(x)
         x = self.main.fc(x)
         print(x.shape)
-        
+
         x = self.conv_8(x)
         gen = self.conv313(x)
 
