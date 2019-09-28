@@ -179,7 +179,7 @@ class ColorizationResNet(nn.Module):
         self.upsample = nn.Upsample(scale_factor=4)
 
         self.bw_conv = nn.Conv2d(1,64,3, padding=1)
-        self.main = VGG(make_layers(cfg, batch_norm=batchNorm))
+        self.main = ResNet50()
 
         if pretrained:
             print('loading pretrained model....')
