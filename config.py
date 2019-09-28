@@ -4,6 +4,7 @@ path = os.path.split(__file__)[0]
 # print("abs path is %s" %(os.path.abspath()))
 
 config = {
+    'arch': 'ResNet',
     'batch_size' : 32,
     'val_batch_size':2,
     'num_iters':1000000000,
