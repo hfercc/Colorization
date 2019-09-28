@@ -186,6 +186,7 @@ class ColorizationResNet(nn.Module):
             self.main = resnet50(pretrained = True)
         else:
             self.main = resnet50()
+        self.main.conv1 = nn.Conv2d(1, 64, 3, padding=1)
 
         self.main.fc = nn.ConvTranspose2d(512,256,4,2, padding=1)
         self.relu = nn.ReLU()
