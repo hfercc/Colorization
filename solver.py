@@ -1,4 +1,4 @@
-from model import ColorizationNet
+from model import ColorizationNet, ColorizationResNet
 from torch.autograd import Variable
 from losses import CE_loss
 from torchvision.utils import save_image
@@ -20,8 +20,10 @@ class Solver(object):
 
     def __init__(self, config):
         """Initialize configurations."""
-
-        self.model = ColorizationNet(config['bachnorm'], config['pretrained'])
+        if config['arch'] == 'VGG':
+            self.model = ColorizationNet(config['bachnorm'], config['pretrained'])
+        elif config['arch'] == 'ResNet':
+            self.model = ColorizationResNet(config['bachnorm'], config['pretrained'])
         self.criterion = CE_loss()
         self.lr = config['lr']
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr, weight_decay=1e-3, betas=(0.8, 0.9))

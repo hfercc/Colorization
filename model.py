@@ -7,6 +7,7 @@ from torch.nn import init
 import torch.nn.functional as F
 import numpy as np
 from models.custom_layers.trainable_layers import *
+from resnetv2 import *
 
 class VGG(nn.Module):
 
@@ -143,6 +144,57 @@ class ColorizationNet(nn.Module):
         gt_img_l = (gt_img[:,:1,:,:] - 50.) * 0.02
         x = self.bw_conv(gt_img_l)
         x = self.relu (self.main(x))
+        x = self.conv_8(x)
+        gen = self.conv313(x)
+
+        # ********************** process gtimg_ab *************
+        gt_img_ab = self.pool(gt_img[:,1:,:,:]).cpu().data.numpy()
+        
+        enc = self.nnecnclayer(gt_img_ab)
+        
+        ngm = self.nongraymasklayer(gt_img_ab)
+        pb = self.priorboostlayer(enc)
+        boost_factor = (pb * ngm).astype('float32')
+        boost_factor = Variable(torch.from_numpy(boost_factor).cuda())
+
+        wei_output = self.rebalancelayer(gen, boost_factor)
+        if self.training:
+            
+            return wei_output, Variable(torch.from_numpy(enc).cuda())
+        else:
+            return self.upsample(gen),wei_output, Variable(torch.from_numpy(enc).cuda())
+
+
+class ColorizationResNet(nn.Module):
+    def __init__(self, batchNorm=True, pretrained=True):
+        super().__init__()
+
+        self.nnecnclayer = NNEncLayer()
+        self.priorboostlayer = PriorBoostLayer()
+        self.nongraymasklayer = NonGrayMaskLayer()
+        # self.rebalancelayer = ClassRebalanceMultLayer()
+        self.rebalancelayer = Rebalance_Op.apply
+        # Rebalance_Op.apply
+        self.pool = nn.AvgPool2d(4,4)
+        self.upsample = nn.Upsample(scale_factor=4)
+
+        self.bw_conv = nn.Conv2d(1,64,3, padding=1)
+        self.main = VGG(make_layers(cfg, batch_norm=batchNorm))
+
+        if pretrained:
+            print('loading pretrained model....')
+            self.main.load_state_dict(torch.load('pretrained/resnet50-19c8e357.pth'))
+
+        self.main.linear = nn.ConvTranspose2d(512,256,4,2, padding=1)
+        self.relu = nn.ReLU()
+
+        self.conv_8 = conv(256,256,2,[1,1], batchNorm=False)
+        self.conv313 = nn.Conv2d(256,313,1,1)
+        
+    def forward(self, gt_img):
+        gt_img_l = (gt_img[:,:1,:,:] - 50.) * 0.02
+        x = self.relu (self.main(x))
+        print(x.shape)
         x = self.conv_8(x)
         gen = self.conv313(x)
 
