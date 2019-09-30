@@ -209,7 +209,7 @@ class ColorizationResNet(nn.Module):
         out = F.avg_pool2d(out, 4)
         out = self.main.linear(out)
 
-        x = self.conv_8(x)
+        x = self.conv_8(out)
         gen = self.conv313(x)
 
         # ********************** process gtimg_ab *************
