@@ -7,7 +7,7 @@ from torch.nn import init
 import torch.nn.functional as F
 import numpy as np
 from models.custom_layers.trainable_layers import *
-from torchvision.models.resnet import resnet50
+from resnetv2 import ResNet50
 
 class VGG(nn.Module):
 
@@ -180,16 +180,17 @@ class ColorizationResNet(nn.Module):
         self.upsample = nn.Upsample(scale_factor=4)
 
         self.bw_conv = nn.Conv2d(1,64,3, padding=1)
-        self.main = resnet50()
+        self.main = ResNet50()
 
-        if pretrained:
-            print('loading pretrained model....')
-            self.main = resnet50(pretrained = True)
-        else:
-            self.main = resnet50()
+        #if pretrained:
+        #    print('loading pretrained model....')
+        #    self.main = resnet50(pretrained = True)
+        #else:
+        #    self.main = resnet50()
+
         self.main.conv1 = nn.Conv2d(1, 64, 3, padding=1)
 
-        self.main.fc = nn.ConvTranspose2d(2048, 256, 4, 4)
+        self.main.linear = nn.ConvTranspose2d(2048, 256, 4, 4)
         self.relu = nn.ReLU()
 
         self.conv_8 = conv(256,256,2,[1,1], batchNorm=False)
@@ -198,15 +199,7 @@ class ColorizationResNet(nn.Module):
     def forward(self, gt_img):
         gt_img_l = (gt_img[:,:1,:,:] - 50.) * 0.02
 
-        x = self.main.conv1(gt_img_l)
-        x = self.main.bn1(x)
-        x = self.main.relu(x)
-        x = self.main.maxpool(x)
-        x = self.main.layer1(x)
-        x = self.main.layer2(x)
-        x = self.main.layer3(x)
-        x = self.main.layer4(x)
-        x = self.main.fc(x)
+        x = self.main(gt_img_l)
 
         x = self.conv_8(x)
         gen = self.conv313(x)

@@ -14,6 +14,7 @@ import shutil
 import numpy as np
 from utils import tools
 
+
 gamut = np.load('models/custom_layers/pts_in_hull.npy')
 
 class Solver(object):
