@@ -206,7 +206,7 @@ class ColorizationResNet(nn.Module):
         #print(out.shape)
         out = self.main.layer4(out)
         
-        out = F.avg_pool2d(out, 4)
+        out = F.avg_pool2d(out, 2)
         out = self.main.linear(out)
 
         x = self.conv_8(out)
