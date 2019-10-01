@@ -75,7 +75,7 @@ class Image_from_folder(data.Dataset):
         if self.train:
             img = resize(img ,(224, 224)) 
         else:
-            img = resize(img, self.render_size)
+            img = resize(img, (224, 224))
         try:
             img = rgb2lab(img)   
         except ValueError as e:
