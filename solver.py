@@ -192,7 +192,7 @@ class Solver(object):
 
             full_rs_output, wei_output, enc_gt = self.model(gt)
             loss = self.criterion(wei_output ,enc_gt)
-            test_loss += loss.data[0]
+            test_loss += loss.item()
 
             gt_img_l = gt[:,:1,:,:]
             # _, _, H_orig, W_orig = gt_img_l.data.shape
