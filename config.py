@@ -5,17 +5,17 @@ path = os.path.split(__file__)[0]
 
 config = {
     'arch': 'ResNet',
-    'batch_size' : 4,
+    'batch_size' : 2,
     'val_batch_size':2,
     'num_iters':1000000000,
     'seed' : 1,
     'lr':3.16e-4,
 
-    'lr_update_step':37500,
+    'lr_update_step':10,
     'test_cycle':1,
 
     'cuda' : True,
-    'gpus' :2,
+    'gpus' :1,
     'gpuargs' : {'num_workers': 4, 
                'pin_memory' : True
               },
