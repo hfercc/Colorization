@@ -31,17 +31,17 @@ config = {
     #     'weight_decay': 0.004
     # },
 
-    'save' :'%s/work_imagenet/' % path,
+    'save' :'%s/work_cub/' % path,
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/ssd1/bansa01/imagenet_final/train/*/*.JPEG',
+        'file' : '/home/TLC619/fgvc/data/CUB_200_2011/train/*/*.jpg',
         'replicates': 1,
         'train':True
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/ssd1/bansa01/imagenet_final/val/*/*.JPEG',
+        'file' : '/home/TLC619/fgvc/data/CUB_200_2011/val/*/*.jpg',
         'replicates': 1,
         'train':False
     },
