@@ -11,7 +11,7 @@ config = {
     'seed' : 1,
     'lr':3.16e-4,
 
-    'lr_update_step':10,
+    'lr_update_step':37500,
     'test_cycle':1,
 
     'cuda' : True,
@@ -35,7 +35,7 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/100*.jpg',
+        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/*.jpg',
         'replicates': 1,
         'train':True
     },
