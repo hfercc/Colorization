@@ -5,7 +5,7 @@ path = os.path.split(__file__)[0]
 
 config = {
     'arch': 'ResNet',
-    'batch_size' : 8,
+    'batch_size' : 4,
     'val_batch_size':2,
     'num_iters':1000000000,
     'seed' : 1,
