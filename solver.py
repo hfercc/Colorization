@@ -46,7 +46,7 @@ class Solver(object):
             self.model.cuda()
             if config['gpus'] > 1:
                 self.model = torch.nn.DataParallel(self.model)
-                self.criterion = torch.nn.DataParallel(self.criterion)
+                #self.criterion = torch.nn.DataParallel(self.criterion)
 
 
     def print_network(self, model, name):
