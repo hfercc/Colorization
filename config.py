@@ -20,7 +20,7 @@ config = {
                'pin_memory' : True
               },
 
-    'model':'ColorizationNet',
+    'model':'ColorizationResNet',
     'bachnorm':True,
     'pretrained':True,
 
@@ -35,7 +35,7 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/*.jpg',
+        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/100*.jpg',
         'replicates': 1,
         'train':True
     },
