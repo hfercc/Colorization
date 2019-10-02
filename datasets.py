@@ -54,7 +54,7 @@ class Image_from_folder(data.Dataset):
 
         if not self.train:
             #only choose 300 images for validation
-            self.gt_images = random.sample( self.gt_images, 300)
+            self.gt_images = random.sample( self.gt_images, 30)
         self.size = len(self.gt_images)
 
         self.frame_size = frame_utils.read_gen(self.gt_images[0]).shape
