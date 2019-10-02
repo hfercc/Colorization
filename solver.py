@@ -155,7 +155,10 @@ class Solver(object):
         # Load the trained generator.
         self.optimizer.zero_grad()
         data_iter = iter(data_loader)
-        self.model.nnecnclayer.nnenc.alreadyUsed = False
+        if isinstance(self.model, torch.nn.DataParallel):
+            self.model.module.nnecnclayer.nnenc.alreadyUsed = False
+        else:
+            self.model.nnecnclayer.nnenc.alreadyUsed = False
 
         if inference_iter:
             self.restore_model(inference_iter)
