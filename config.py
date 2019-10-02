@@ -35,13 +35,13 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/*.jpg',
+        'file' : '/ssd1/bansa01/imagenet_final/train/*/*.JPEG',
         'replicates': 1,
         'train':True
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/data/cifar-10-batches-py/raw/*.jpg',
+        'file' : '/ssd1/bansa01/imagenet_final/val/*/*.JPEG',
         'replicates': 1,
         'train':False
     },
