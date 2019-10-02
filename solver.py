@@ -228,7 +228,10 @@ class Solver(object):
 
         test_logger.add_scalar('test_lr',  self.lr, self.record_iters)
         test_logger.add_scalar('test_loss',  best_error, self.record_iters)
-        self.model.nnecnclayer.nnenc.alreadyUsed = False
+        if isinstance(self.model, torch.nn.DataParallel):
+            self.model.module.nnecnclayer.nnenc.alreadyUsed = False
+        else:
+            self.model.nnecnclayer.nnenc.alreadyUsed = False
         time_elapsed = time.time() - since
         print('test loss is %.4f' % (best_error ))
         print('test completed in %.0fm %.0fs'% (time_elapsed // 60, time_elapsed % 60))
