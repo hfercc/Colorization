@@ -44,6 +44,9 @@ class Solver(object):
 
         if self.cuda:
             self.model.cuda()
+            if config['gpus'] > 1:
+                self.model = nn.DataParallel(self.model)
+                self.criterion = nn.DataParallel(self.criterion)
 
 
     def print_network(self, model, name):
