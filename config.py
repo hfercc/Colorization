@@ -31,7 +31,7 @@ config = {
     #     'weight_decay': 0.004
     # },
 
-    'save' :'%s/work/' % path,
+    'save' :'%s/work_imagenet/' % path,
 
     'image_folder_train' : {
         'root' : '%s/' % path,
