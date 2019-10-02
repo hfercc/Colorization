@@ -15,7 +15,7 @@ config = {
     'test_cycle':1,
 
     'cuda' : True,
-    'gpus' :2,
+    'gpus' :1,
     'gpuargs' : {'num_workers': 4, 
                'pin_memory' : True
               },
