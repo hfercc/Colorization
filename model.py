@@ -7,7 +7,7 @@ from torch.nn import init
 import torch.nn.functional as F
 import numpy as np
 from models.custom_layers.trainable_layers import *
-from resnetv2 import ResNet50
+from torchvision.model_zoo import resnet50
 
 class VGG(nn.Module):
 
@@ -180,7 +180,7 @@ class ColorizationResNet(nn.Module):
         self.upsample = nn.Upsample(scale_factor=4)
 
         self.bw_conv = nn.Conv2d(1,64,3, padding=1)
-        self.main = ResNet50()
+        self.main = resnet50(pretrained=True)
 
         #if pretrained:
         #    print('loading pretrained model....')
