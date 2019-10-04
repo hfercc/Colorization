@@ -7,7 +7,7 @@ from torch.nn import init
 import torch.nn.functional as F
 import numpy as np
 from models.custom_layers.trainable_layers import *
-from torchvision.model_zoo import resnet50
+from torchvision.models import resnet50
 
 class VGG(nn.Module):
 
