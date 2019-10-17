@@ -5,7 +5,7 @@ path = os.path.split(__file__)[0]
 
 config = {
     'arch': 'ResNet',
-    'batch_size' : 2,
+    'batch_size' : 8,
     'val_batch_size':1,
     'num_iters':1000000000,
     'seed' : 1,
@@ -22,7 +22,7 @@ config = {
 
     'model':'ColorizationResNet',
     'bachnorm':True,
-    'pretrained':True,
+    'pretrained':False,
 
     # 'opt_config':{
     #     'lr' : 0.001,
@@ -35,13 +35,13 @@ config = {
 
     'image_folder_train' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/fgvc/data/CUB_200_2011/train/*/*.jpg',
+        'file' : '/data/CUB_200_2011/*/*/*.jpg',
         'replicates': 1,
         'train':True
     },
     'image_folder_val' : {
         'root' : '%s/' % path,
-        'file' : '/home/TLC619/fgvc/data/CUB_200_2011/val/*/*.jpg',
+        'file' : '/data/CUB_200_2011/val/*/*.jpg',
         'replicates': 1,
         'train':False
     },

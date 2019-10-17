@@ -232,6 +232,7 @@ class Solver(object):
         test_logger.add_scalar('test_lr',  self.lr, self.record_iters)
         test_logger.add_scalar('test_loss',  best_error, self.record_iters)
         if isinstance(self.model, torch.nn.DataParallel):
+            
             self.model.module.nnecnclayer.nnenc.alreadyUsed = False
         else:
             self.model.nnecnclayer.nnenc.alreadyUsed = False
